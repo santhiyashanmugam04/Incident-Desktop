@@ -1,35 +1,71 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+import AppHeader from "./components/AppHeader";
+import AppSidebar from "./components/AppSidebar";
+
+import LoginPage from "./pages/auth/Loginpage";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import AllInventory from "./pages/Inventory/AllInventory";
+import CreateInventory from "./pages/Inventory/CreateInventory";
+import AllTask from "./pages/Tasks/AllTask";
+import CreateTask from "./pages/Tasks/CreateTask";
+
+const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Routes>
+      {/* LOGIN */}
+      <Route
+        path="/login"
+        element={<LoginPage onLogin={() => setIsAuthenticated(true)} />}
+      />
 
-export default App
+      {/* PROTECTED APP */}
+      <Route
+        path="/*"
+        element={
+          isAuthenticated ? (
+            <div className="min-h-screen bg-gray-50">
+              {/* Sidebar */}
+              <AppSidebar />
+
+              {/* Right Content */}
+              <div className="ml-60">
+                {/* Header */}
+                <AppHeader />
+
+                {/* Pages */}
+                <main className="p-6">
+                  <Routes>
+                    {/* Dashboard */}
+                    <Route path="/" element={<Dashboard />} />
+
+                    {/* Inventory */}
+                    <Route path="/inventory/all" element={<AllInventory />} />
+                    <Route
+                      path="/inventory/create"
+                      element={<CreateInventory />}
+                    />
+
+                    {/* Tasks */}
+                    <Route path="/tasks/all" element={<AllTask />} />
+                    <Route path="/tasks/create" element={<CreateTask />} />
+
+                    {/* Fallback */}
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                  </Routes>
+                </main>
+              </div>
+            </div>
+          ) : (
+            <Navigate to="/login" replace />
+          )
+        }
+      />
+    </Routes>
+  );
+};
+
+export default App;
