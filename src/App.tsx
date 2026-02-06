@@ -11,6 +11,10 @@ import CreateInventory from "./pages/Inventory/CreateInventory";
 import AllTask from "./pages/Tasks/AllTask";
 import CreateTask from "./pages/Tasks/CreateTask";
 
+// NEW PAGES
+import Contract from "./pages/Contract";
+import KnowledgeBase from "./pages/KnowledgeBase";
+
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -27,12 +31,12 @@ const App = () => {
         path="/*"
         element={
           isAuthenticated ? (
-            <div className="min-h-screen bg-gray-50">
+            <div className="min-h-screen bg-gray-50 flex">
               {/* Sidebar */}
               <AppSidebar />
 
               {/* Right Content */}
-              <div className="ml-60">
+              <div className="flex-1 ml-64">
                 {/* Header */}
                 <AppHeader />
 
@@ -52,6 +56,11 @@ const App = () => {
                     {/* Tasks */}
                     <Route path="/tasks/all" element={<AllTask />} />
                     <Route path="/tasks/create" element={<CreateTask />} />
+
+                    {/* NEW ROUTES */}
+                    <Route path="/contracts" element={<Contract />} />
+                    <Route path="/knowledge-base"element={<KnowledgeBase />}
+                    /> 
 
                     {/* Fallback */}
                     <Route path="*" element={<Navigate to="/" replace />} />

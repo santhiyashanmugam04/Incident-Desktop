@@ -1,182 +1,191 @@
 import React from "react";
 import {
+  AlertTriangle,
+  FileText,
+  Calendar,
+  Server,
   Home,
   ChevronRight,
-  Clock,
-  FileText,
-  AlertTriangle,
-  Calendar,
-  Database,
 } from "lucide-react";
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen bg-gray-100 font-poppins font-medium">
-      {/* HEADER */}
-      <header className="bg-white px-8 pt-3 pb-6 shadow-sm relative overflow-hidden border-b border-gray-100">
-        <div className="absolute right-0 top-0 w-48 h-full bg-gradient-to-l from-blue-50/60 to-transparent pointer-events-none"></div>
+    <div className="min-h-screen w-full bg-gray-50 mb-2">
 
-        <div className="relative z-10">
-          <h1 className="text-2xl text-blue-600 tracking-tight font-medium">
-            Dashboard
-          </h1>
-          <p className="text-xs text-gray-400 mt-0.5 uppercase tracking-wider">
-            Overview of incidents
-          </p>
-        </div>
-      </header>
-
-      {/* MAIN */}
-      <main className="mt-4 p-8 max-w-[1600px] bg-white mx-auto space-y-6">
-        {/* BREADCRUMB & ACTIONS */}
-        <div className="flex items-center justify-between mb-4">
-          <nav className="flex items-center gap-2 text-[11px] text-gray-400">
-            <Home size={12} className="text-gray-300" />
-            <ChevronRight size={12} />
-            <span className="text-gray-500 uppercase tracking-tight">
+      {/* Top Header */}
+      <div
+        className="w-full bg-white border-gray-200 rounded-tl-lg rounded-bl-lg h-[90px] overflow-hidden"
+        style={{ boxShadow: "4px 4px 6px rgba(0, 0, 0, 0.15)" }}
+      >
+        <div className="flex h-full">
+          
+          {/* Left Content */}
+          <div className="w-2/3 px-5 py-3">
+            <h1 className="text-2xl font-semibold text-blue-500">
               Dashboard
-            </span>
-          </nav>
-
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 px-3 py-1.5 bg-white border border-gray-200 rounded-md text-[11px] text-blue-900 shadow-sm">
-              <Clock size={14} className="text-blue-500" />
-              LAST UPDATED: JUST NOW
-            </div>
-            <button className="bg-blue-600 text-white px-5 py-2 rounded-md text-xs font-semibold hover:bg-blue-700 transition-colors shadow-md shadow-blue-100 uppercase tracking-wide">
-              Generate Report
-            </button>
+            </h1>
+            <p className="text-[#4D607F] text-sm mt-2 pl-1">
+              Overview Of Incidents
+            </p>
           </div>
+
+          {/* Right Image */}
+          <div
+            className="w-1/3 h-full"
+            style={{
+              backgroundImage: "url(/images/header-bg.png)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Main */}
+      <main className="mx-auto mt-4 max-w-[1200px] bg-white rounded-lg p-6 space-y-6 shadow-md">
+
+        {/* Breadcrumb */}
+        <div className="flex items-center text-sm text-gray-500">
+          <Home className="w-4 h-4 mr-1 text-gray-400" />
+          <span className="cursor-pointer hover:text-blue-600">
+            Home
+          </span>
+          <ChevronRight className="w-4 h-4 mx-2 text-gray-400" />
+          <span className="font-medium text-gray-700">
+            Dashboard
+          </span>
         </div>
 
-        {/* METRIC CARDS */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm relative group">
-            <h3 className="text-[10px] text-blue-500 uppercase tracking-widest">
-              Total CIs
-            </h3>
-            <p className="text-3xl font-semibold text-slate-800 mt-2">5</p>
-            <p className="text-[10px] text-green-500 mt-2 flex items-center gap-1">
-              <span className="text-xs">↗</span> +2.1%
-              <span className="text-gray-400 lowercase">
-                from last month
-              </span>
+        {/* Actions */}
+        <div className="flex justify-end gap-4">
+          <span className="text-sm text-gray-500 bg-gray-50 px-3 py-1 rounded-md shadow-sm">
+            Last updated: Just now
+          </span>
+          <button
+            type="button"
+            className="bg-blue-600 text-white text-sm px-4 py-2 rounded-md shadow-sm hover:shadow-md transition"
+          >
+            Generate Report
+          </button>
+        </div>
+
+        {/* Stats */}
+        <section className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="p-4 rounded-lg bg-white shadow-sm">
+            <div className="flex justify-between">
+              <p className="text-sm text-blue-600">Total CIs</p>
+              <Server size={18} className="text-gray-400" />
+            </div>
+            <h2 className="text-2xl font-semibold mt-2">5</h2>
+            <p className="text-xs text-green-600 mt-1">
+              ↑ +2.1% from last month
             </p>
-            <Database
-              size={24}
-              className="absolute top-5 right-5 text-slate-300 group-hover:text-blue-200 transition-colors"
-            />
           </div>
 
-          <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm relative">
-            <h3 className="text-[10px] text-blue-500 uppercase tracking-widest">
-              Active Incidents
-            </h3>
-            <p className="text-3xl font-semibold text-slate-800 mt-2">3</p>
-            <p className="text-[10px] text-gray-400 mt-2 uppercase">
-              1 critical priority
+          <div className="p-4 rounded-lg bg-white shadow-sm">
+            <div className="flex justify-between">
+              <p className="text-sm text-blue-600">
+                Active Incidents
+              </p>
+              <AlertTriangle size={18} className="text-red-500" />
+            </div>
+            <h2 className="text-2xl font-semibold mt-2">3</h2>
+            <p className="text-xs text-gray-500 mt-1">
+              1 Critical Priority
             </p>
-            <AlertTriangle
-              size={24}
-              className="absolute top-5 right-5 text-orange-400"
-            />
           </div>
 
-          <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm relative">
-            <h3 className="text-[10px] text-blue-500 uppercase tracking-widest">
-              Expiring Contracts
-            </h3>
-            <p className="text-3xl font-semibold text-slate-800 mt-2">1</p>
-            <p className="text-[10px] text-gray-400 mt-2 uppercase">
+          <div className="p-4 rounded-lg bg-white shadow-sm">
+            <div className="flex justify-between">
+              <p className="text-sm text-blue-600">
+                Expiring Contracts
+              </p>
+              <FileText size={18} className="text-blue-500" />
+            </div>
+            <h2 className="text-2xl font-semibold mt-2">1</h2>
+            <p className="text-xs text-gray-500 mt-1">
               Next 90 days
             </p>
-            <FileText
-              size={24}
-              className="absolute top-5 right-5 text-blue-300"
-            />
           </div>
 
-          <div className="bg-white p-5 rounded-xl border border-gray-100 shadow-sm relative">
-            <h3 className="text-[10px] text-blue-500 uppercase tracking-widest">
-              Pending PMs
-            </h3>
-            <p className="text-3xl font-semibold text-slate-800 mt-2">1</p>
-            <p className="text-[10px] text-gray-400 mt-2 uppercase">
-              Scheduled this week
+          <div className="p-4 rounded-lg bg-white shadow-sm">
+            <div className="flex justify-between">
+              <p className="text-sm text-blue-600">
+                Pending PMs
+              </p>
+              <Calendar size={18} className="text-purple-500" />
+            </div>
+            <h2 className="text-2xl font-semibold mt-2">1</h2>
+            <p className="text-xs text-gray-500 mt-1">
+              Scheduled for this week
             </p>
-            <Calendar
-              size={24}
-              className="absolute top-5 right-5 text-purple-300"
-            />
           </div>
-        </div>
+        </section>
 
-        {/* CHART PLACEHOLDERS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm h-72">
-            <h3 className="text-xs text-blue-600 uppercase tracking-wider">
+        {/* Charts */}
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="h-[260px] rounded-lg bg-white p-4 shadow-sm">
+            <h3 className="text-sm font-semibold text-blue-600">
               Incidents by Priority
             </h3>
-            <p className="text-[11px] text-gray-400 mt-1">
+            <p className="text-xs text-gray-500">
               Distribution of current active tickets
             </p>
           </div>
 
-          <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm h-72">
-            <h3 className="text-xs text-blue-600 uppercase tracking-wider">
+          <div className="h-[260px] rounded-lg bg-white p-4 shadow-sm">
+            <h3 className="text-sm font-semibold text-blue-600">
               CI Types
             </h3>
-            <p className="text-[11px] text-gray-400 mt-1">
+            <p className="text-xs text-gray-500">
               Infrastructure breakdown
             </p>
           </div>
-        </div>
+        </section>
 
-        {/* HEALTH ALERTS */}
-        <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-          <h3 className="text-xs text-blue-600 uppercase tracking-wider">
-            Critical Health Alerts
-          </h3>
-          <p className="text-[11px] text-gray-400 mt-1 mb-6">
-            CIs reporting issues or non-compliance
-          </p>
-
-          <div className="space-y-3">
-            <div className="flex items-center justify-between p-4 border rounded-xl shadow-sm">
-              <div className="flex items-center gap-4">
-                <div className="w-2.5 h-2.5 rounded-full bg-orange-400"></div>
-                <div>
-                  <h4 className="text-sm text-slate-700">
-                    PROD-APP-01
-                  </h4>
-                  <p className="text-[11px] text-gray-400 uppercase">
-                    Server • 10.0.1.20
-                  </p>
-                </div>
-              </div>
-              <button className="text-xs font-semibold text-blue-600">
-                VIEW
-              </button>
-            </div>
-
-            <div className="flex items-center justify-between p-4 border rounded-xl shadow-sm">
-              <div className="flex items-center gap-4">
-                <div className="w-2.5 h-2.5 rounded-full bg-red-500"></div>
-                <div>
-                  <h4 className="text-sm text-slate-700">
-                    UAT-WEB-01
-                  </h4>
-                  <p className="text-[11px] text-gray-400 uppercase">
-                    Server • 10.0.2.10
-                  </p>
-                </div>
-              </div>
-              <button className="text-xs font-semibold text-blue-600">
-                VIEW
-              </button>
-            </div>
+        {/* Alerts */}
+        <section className="rounded-lg bg-white p-4 space-y-4 shadow-sm">
+          <div>
+            <h3 className="text-sm font-semibold text-blue-600">
+              Critical Health Alerts
+            </h3>
+            <p className="text-xs text-gray-500">
+              CIs reporting issues or non-compliance
+            </p>
           </div>
-        </div>
+
+          <div className="flex justify-between items-center bg-white rounded-md p-3 shadow-sm">
+            <div className="flex items-center gap-3">
+              <span className="w-3 h-3 bg-yellow-400 rounded-full" />
+              <div>
+                <p className="text-sm font-medium">PROD-APP-01</p>
+                <p className="text-xs text-gray-500">
+                  Server • 10.0.1.20
+                </p>
+              </div>
+            </div>
+            <span className="text-xs px-2 py-1 bg-gray-100 rounded-md shadow-sm">
+              Warning
+            </span>
+          </div>
+
+          <div className="flex justify-between items-center bg-white rounded-md p-3 shadow-sm">
+            <div className="flex items-center gap-3">
+              <span className="w-3 h-3 bg-red-500 rounded-full" />
+              <div>
+                <p className="text-sm font-medium">UAT-WEB-01</p>
+                <p className="text-xs text-gray-500">
+                  Server • 10.0.2.10
+                </p>
+              </div>
+            </div>
+            <span className="text-xs px-2 py-1 bg-red-500 text-white rounded-md shadow-sm">
+              Critical
+            </span>
+          </div>
+        </section>
+
       </main>
     </div>
   );
