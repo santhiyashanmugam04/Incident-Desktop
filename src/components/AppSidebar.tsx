@@ -1,13 +1,23 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
+// Using Lucide for the icons shown in your image
+import { 
+  LayoutGrid, 
+  Database, 
+  ChevronDown, 
+  ChevronUp, 
+  ClipboardList 
+} from "lucide-react";
 
 const sidebarMenu = [
   {
     title: "Dashboard",
     route: "/",
+    icon: <LayoutGrid size={18} />,
   },
   {
     title: "Inventory",
+    icon: <Database size={18} />,
     subItems: [
       { title: "All Inventory", route: "/inventory/all" },
       { title: "Create Inventory", route: "/inventory/create" },
@@ -15,6 +25,7 @@ const sidebarMenu = [
   },
   {
     title: "Tasks",
+    icon: <ClipboardList size={18} />,
     subItems: [
       { title: "All Tasks", route: "/tasks/all" },
       { title: "Create Task", route: "/tasks/create" },
@@ -40,45 +51,60 @@ const AppSidebar = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <aside className="w-60 fixed top-0 left-0 h-screen bg-white  p-4">
-      <nav className="space-y-2 text-sm">
+    <aside className="w-64 fixed top-0 left-0 h-screen bg-white border-r border-gray-100 p-3">
+      {/* Branding matched to image */}
+      <div className="px-3 py-4 mb-2 flex items-center gap-">
+        <h1 className="text-xl font-bold text-blue-900">
+          NextOpz <span className="text-blue-500 font-semibold">Support</span>
+        </h1>
+      </div>
+
+      <nav className="space-y-1">
         {sidebarMenu.map(menu => (
           <div key={menu.title}>
-            {/* MAIN MENU */}
             {!menu.subItems ? (
+              /* DASHBOARD / SINGLE ITEM */
               <Link
                 to={menu.route!}
-                className={`block px-3 py-2 rounded
-                  ${
-                    isActive(menu.route!)
-                      ? "bg-blue-100 text-blue-600 font-medium"
-                      : "text-gray-700 hover:bg-gray-100"
+                className={`flex items-center gap-3 px-3 py-2 rounded-md transition-all
+                  ${isActive(menu.route!)
+                    ? "bg-blue-50 text-blue-600 font-semibold"
+                    : "text-gray-600 hover:bg-gray-50 font-medium"
                   }`}
               >
-                {menu.title}
+                <span className={isActive(menu.route!) ? "text-blue-600" : "text-gray-500"}>
+                  {menu.icon}
+                </span>
+                <span className="text-sm">{menu.title}</span>
               </Link>
             ) : (
+              /* DROPDOWN ITEMS */
               <>
-                {/* PARENT */}
                 <button
                   onClick={() => toggleMenu(menu.title)}
-                  className="w-full text-left px-3 py-2 rounded text-gray-700 hover:bg-gray-100 font-medium"
+                  className="w-full flex items-center justify-between px-3 py-2 rounded-md text-gray-600 hover:bg-gray-50 font-medium transition-all"
                 >
-                  {menu.title}
+                  <div className="flex items-center gap-3">
+                    <span className="text-gray-500">{menu.icon}</span>
+                    <span className="text-sm">{menu.title}</span>
+                  </div>
+                  {openMenu[menu.title] ? (
+                    <ChevronUp size={14} className="text-gray-400" />
+                  ) : (
+                    <ChevronDown size={14} className="text-gray-400" />
+                  )}
                 </button>
 
-                {/* CHILDREN */}
                 {openMenu[menu.title] && (
-                  <div className="ml-4 mt-1 space-y-1">
+                  <div className="ml-9 mt-1 space-y-1 border-l border-gray-100">
                     {menu.subItems.map(sub => (
                       <Link
                         key={sub.title}
                         to={sub.route}
-                        className={`block px-3 py-2 rounded
-                          ${
-                            isActive(sub.route)
-                              ? "bg-blue-50 text-blue-600 font-medium"
-                              : "text-gray-600 hover:bg-gray-100"
+                        className={`block px-4 py-1.5 text-xs rounded-mr-md transition-colors
+                          ${isActive(sub.route)
+                            ? "text-blue-600 font-medium"
+                            : "text-gray-500 hover:text-blue-600 hover:bg-gray-50"
                           }`}
                       >
                         {sub.title}

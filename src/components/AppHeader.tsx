@@ -5,7 +5,7 @@ const Header = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="h-[50px] px-6 flex items-center justify-between bg-gray-50 ">
+    <header className="h-[50px] px-6 flex items-center pt-7 justify-between bg-gray-50 ">
       {/* Left - Search */}
       <div className="relative w-54">
         <Icon
