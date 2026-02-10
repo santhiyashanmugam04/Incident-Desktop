@@ -1,4 +1,5 @@
 import React from "react";
+import headerBg from "../images/header-bg.png";
 
 const Contract: React.FC = () => {
   return (
@@ -23,7 +24,7 @@ const Contract: React.FC = () => {
           <div
             className="w-1/3 h-full"
             style={{
-              backgroundImage: "url('/images/header-bg.png')",
+              backgroundImage: `url(${headerBg})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
