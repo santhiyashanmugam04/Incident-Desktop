@@ -180,10 +180,10 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <span className="text-xs px-3 py-1.5 bg-yellow-50 text-yellow-700 border rounded-md">
+              <span className="text-xs px-3 py-1.5 bg-gray-100 text-gray-700  rounded-md">
                 Warning
               </span>
-              <button className="text-xs text-blue-600 hover:underline">
+              <button className="text-xs text-gray-500 hover:underline">
                 View
               </button>
             </div>
@@ -204,7 +204,7 @@ const Dashboard = () => {
               <span className="text-xs px-3 py-1.5 bg-red-500 text-white rounded-md">
                 Critical
               </span>
-              <button className="text-xs text-blue-600 hover:underline">
+              <button className="text-xs text-gray-500 hover:underline">
                 View
               </button>
             </div>

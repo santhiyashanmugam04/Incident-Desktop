@@ -41,7 +41,7 @@ const App = () => {
                 <AppHeader />
 
                 {/* Pages */}
-                <main className="p-3">
+                <main className="p-2 pt-2">
                   <Routes>
                     {/* Dashboard */}
                     <Route path="/" element={<Dashboard />} />
